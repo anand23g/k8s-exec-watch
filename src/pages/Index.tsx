@@ -30,7 +30,7 @@ const Index = () => {
             <h2 className="text-2xl font-bold text-foreground bg-gradient-primary bg-clip-text text-transparent">
               🛠️ Your Testing Arsenal
             </h2>
-            <Badge className="bg-gradient-tool-start text-white border-0 animate-pulse-glow">
+            <Badge className="bg-tool-start text-white border-0">
               {tools.length} Active Tools
             </Badge>
           </div>
