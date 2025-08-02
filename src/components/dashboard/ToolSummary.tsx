@@ -33,81 +33,83 @@ export function ToolSummary({ tools, totalExecutions, growthRate }: ToolSummaryP
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
       {/* Total Executions */}
-      <Card className="bg-gradient-card border-border/50 shadow-card">
-        <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-medium text-muted-foreground">
-            Total Executions
+      <Card className="bg-gradient-card border-border/50 shadow-card hover:shadow-glow transition-all duration-500 animate-scale-in group">
+        <CardHeader className="pb-3">
+          <CardTitle className="text-sm font-medium text-muted-foreground flex items-center">
+            🎯 Total Executions
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="text-3xl font-bold font-mono text-foreground">
+          <div className="text-4xl font-bold font-mono text-foreground group-hover:scale-110 transition-transform duration-300 bg-gradient-primary bg-clip-text text-transparent">
             {totalAllExecutions.toLocaleString()}
           </div>
-          <p className="text-xs text-muted-foreground mt-1">
-            Across {tools.length} tools
+          <p className="text-sm text-muted-foreground mt-2 flex items-center">
+            <span className="mr-2">⚡</span>
+            Across {tools.length} active tools
           </p>
         </CardContent>
       </Card>
 
       {/* Average per Tool */}
-      <Card className="bg-gradient-card border-border/50 shadow-card">
-        <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-medium text-muted-foreground">
-            Average per Tool
+      <Card className="bg-gradient-card border-border/50 shadow-card hover:shadow-glow transition-all duration-500 animate-scale-in group" style={{ animationDelay: '100ms' }}>
+        <CardHeader className="pb-3">
+          <CardTitle className="text-sm font-medium text-muted-foreground flex items-center">
+            📊 Average per Tool
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="text-3xl font-bold font-mono text-foreground">
+          <div className="text-4xl font-bold font-mono text-foreground group-hover:scale-110 transition-transform duration-300">
             {averageExecutions.toLocaleString()}
           </div>
-          <p className="text-xs text-muted-foreground mt-1">
+          <p className="text-sm text-muted-foreground mt-2 flex items-center">
+            <span className="mr-2">🔄</span>
             Executions/hour
           </p>
         </CardContent>
       </Card>
 
       {/* Active Tools Status */}
-      <Card className="bg-gradient-card border-border/50 shadow-card">
-        <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-medium text-muted-foreground">
-            Tool Status
+      <Card className="bg-gradient-card border-border/50 shadow-card hover:shadow-glow transition-all duration-500 animate-scale-in group" style={{ animationDelay: '200ms' }}>
+        <CardHeader className="pb-3">
+          <CardTitle className="text-sm font-medium text-muted-foreground flex items-center">
+            🔥 Tool Health Status
           </CardTitle>
         </CardHeader>
-        <CardContent className="space-y-2">
-          <div className="flex items-center space-x-2">
-            <CheckCircle className="w-4 h-4 text-green-400" />
-            <span className="text-sm text-foreground">{stableTools} Stable</span>
+        <CardContent className="space-y-3">
+          <div className="flex items-center space-x-3">
+            <CheckCircle className="w-5 h-5 text-green-400" />
+            <span className="text-base font-medium text-foreground">{stableTools} Stable Tools</span>
           </div>
-          <div className="flex items-center space-x-2">
-            <TrendingUp className="w-4 h-4 text-tool-start" />
-            <span className="text-sm text-foreground">{growingTools.length} Growing</span>
+          <div className="flex items-center space-x-3">
+            <TrendingUp className="w-5 h-5 text-tool-start" />
+            <span className="text-base font-medium text-foreground">{growingTools.length} Growing Fast</span>
           </div>
-          <div className="flex items-center space-x-2">
-            <AlertTriangle className="w-4 h-4 text-tool-postman" />
-            <span className="text-sm text-foreground">{decliningTools.length} Declining</span>
+          <div className="flex items-center space-x-3">
+            <AlertTriangle className="w-5 h-5 text-tool-postman" />
+            <span className="text-base font-medium text-foreground">{decliningTools.length} Need Attention</span>
           </div>
         </CardContent>
       </Card>
 
       {/* Top Performers */}
-      <Card className="bg-gradient-card border-border/50 shadow-card">
-        <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-medium text-muted-foreground">
-            Top Performers
+      <Card className="bg-gradient-card border-border/50 shadow-card hover:shadow-glow transition-all duration-500 animate-scale-in group" style={{ animationDelay: '300ms' }}>
+        <CardHeader className="pb-3">
+          <CardTitle className="text-sm font-medium text-muted-foreground flex items-center">
+            🏆 Top Performers
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="space-y-1">
+          <div className="space-y-3">
             {topPerformers.slice(0, 3).map((tool, index) => (
-              <div key={tool} className="flex items-center justify-between">
-                <div className="flex items-center space-x-2">
-                  <Badge variant="outline" className="text-xs px-2 py-0 font-mono">
+              <div key={tool} className="flex items-center justify-between group/item hover:bg-accent/20 p-2 rounded-lg transition-all duration-200">
+                <div className="flex items-center space-x-3">
+                  <Badge variant="outline" className="text-xs px-3 py-1 font-bold bg-gradient-primary text-white border-0">
                     #{index + 1}
                   </Badge>
-                  <span className="text-sm font-medium">{tool}</span>
+                  <span className="text-base font-semibold group-hover/item:text-tool-start transition-colors duration-200">{tool}</span>
                 </div>
-                <span className="text-xs text-muted-foreground font-mono">
-                  {totalExecutions[tool].toLocaleString()}
+                <span className="text-sm text-muted-foreground font-mono font-medium group-hover/item:text-foreground transition-colors duration-200">
+                  🚀 {totalExecutions[tool].toLocaleString()}
                 </span>
               </div>
             ))}

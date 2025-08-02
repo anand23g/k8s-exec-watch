@@ -73,12 +73,17 @@ export function ToolGrid({ tools, totalExecutions, growthRate }: ToolGridProps) 
   };
 
   return (
-    <Card className="bg-gradient-card border-border/50 shadow-card">
+    <Card className="bg-gradient-card border-border/50 shadow-card hover:shadow-glow transition-all duration-500 animate-fade-in">
       <CardHeader>
         <div className="flex items-center justify-between">
-          <CardTitle className="text-lg font-semibold text-foreground">
-            Tool Performance Grid
-          </CardTitle>
+          <div>
+            <CardTitle className="text-xl font-bold text-foreground bg-gradient-primary bg-clip-text text-transparent">
+              🚀 Tool Performance Grid
+            </CardTitle>
+            <p className="text-sm text-muted-foreground mt-1">
+              Monitor all {tools.length} tools in your testing arsenal
+            </p>
+          </div>
           <div className="flex items-center space-x-2">
             <Button
               variant="outline"
@@ -108,39 +113,40 @@ export function ToolGrid({ tools, totalExecutions, growthRate }: ToolGridProps) 
         </div>
       </CardHeader>
       <CardContent>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-          {displayedTools.map((tool) => {
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-6 gap-4">
+          {displayedTools.map((tool, index) => {
             const category = getToolCategory(tool);
             return (
               <div
                 key={tool}
-                className="p-4 rounded-lg border border-border/50 bg-card/50 hover:bg-card/80 transition-all duration-200 hover:shadow-sm"
+                className="group p-4 rounded-xl border border-border/50 bg-card/50 hover:bg-card/80 transition-all duration-300 hover:shadow-lg hover:scale-[1.02] hover:border-border animate-slide-up"
+                style={{ animationDelay: `${index * 50}ms` }}
               >
-                <div className="flex items-center justify-between mb-2">
-                  <h3 className="font-medium text-sm text-foreground truncate">
+                <div className="flex items-center justify-between mb-3">
+                  <h3 className="font-semibold text-base text-foreground truncate group-hover:text-tool-start transition-colors duration-200">
                     {tool}
                   </h3>
                   <Badge 
                     variant="outline" 
-                    className={`text-xs px-2 py-0 ${categoryColors[category]}`}
+                    className={`text-xs px-3 py-1 font-medium ${categoryColors[category]} animate-pulse-glow`}
                   >
                     {category}
                   </Badge>
                 </div>
                 
-                <div className="space-y-2">
+                <div className="space-y-3">{/* Fixed missing closing tag */}
                   <div className="flex items-center justify-between">
-                    <span className="text-xs text-muted-foreground">Executions</span>
-                    <span className="text-sm font-mono font-medium text-foreground">
+                    <span className="text-sm text-muted-foreground">Executions</span>
+                    <span className="text-lg font-mono font-bold text-foreground group-hover:scale-110 transition-transform duration-200">
                       {totalExecutions[tool]?.toLocaleString() || '0'}
                     </span>
                   </div>
                   
                   <div className="flex items-center justify-between">
-                    <span className="text-xs text-muted-foreground">Growth</span>
-                    <div className="flex items-center space-x-1">
+                    <span className="text-sm text-muted-foreground">Growth</span>
+                    <div className="flex items-center space-x-2">
                       {getTrendIcon(growthRate[tool] || 0)}
-                      <span className={`text-xs font-medium ${getTrendColor(growthRate[tool] || 0)}`}>
+                      <span className={`text-sm font-bold ${getTrendColor(growthRate[tool] || 0)}`}>
                         {Math.abs(growthRate[tool] || 0)}%
                       </span>
                     </div>
@@ -152,13 +158,13 @@ export function ToolGrid({ tools, totalExecutions, growthRate }: ToolGridProps) 
         </div>
         
         {tools.length > 12 && (
-          <div className="mt-6 text-center">
+          <div className="mt-8 text-center">
             <Button
               variant="outline"
               onClick={() => setShowAll(!showAll)}
-              className="text-sm"
+              className="text-sm px-6 py-3 hover:bg-primary/10 hover:border-primary/50 transition-all duration-300 hover:scale-105"
             >
-              {showAll ? 'Show Less' : `Show All ${tools.length} Tools`}
+              {showAll ? '📋 Show Less Tools' : `🚀 Show All ${tools.length} Tools`}
               {showAll ? <ChevronUp className="w-4 h-4 ml-2" /> : <ChevronDown className="w-4 h-4 ml-2" />}
             </Button>
           </div>
