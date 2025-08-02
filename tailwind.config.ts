@@ -52,6 +52,13 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
+				// Tool-specific colors for the analytics dashboard
+				tool: {
+					start: 'hsl(var(--tool-start))',
+					java: 'hsl(var(--tool-java))',
+					postman: 'hsl(var(--tool-postman))',
+					bruno: 'hsl(var(--tool-bruno))'
+				},
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
 					foreground: 'hsl(var(--sidebar-foreground))',
@@ -62,6 +69,18 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				}
+			},
+			backgroundImage: {
+				'gradient-primary': 'var(--gradient-primary)',
+				'gradient-card': 'var(--gradient-card)',
+				'gradient-tool-start': 'var(--gradient-tool-start)',
+				'gradient-tool-java': 'var(--gradient-tool-java)',
+				'gradient-tool-postman': 'var(--gradient-tool-postman)',
+				'gradient-tool-bruno': 'var(--gradient-tool-bruno)'
+			},
+			boxShadow: {
+				'card': 'var(--shadow-card)',
+				'glow': 'var(--shadow-glow)'
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
